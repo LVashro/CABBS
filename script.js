@@ -18,10 +18,12 @@ let room = null;
     const pcs = room.getPeerConnections();
 
     for ([peerId, pc] of Object.entries(pcs)) {
-      alert(peerId);
+      Id.push(peerId);
     }
     }, delayInMilliseconds);
 
+    chatlog("There are " + Id.length + " users here.");
+    
 // チャットを送信
     $('#send').click(function(){
         var msg = $('#msg').val();
