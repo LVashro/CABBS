@@ -13,7 +13,7 @@ let room = null;
 let count = 0;
     $('#join').click(function()
     {room = peer.joinRoom($('#roomName').val(),{mode: 'mesh'});
-    chatlog('<i>' + $('#roomName').val() + '</i>に入室しました');
+    chatlog('Now joining <i>' + $('#roomName').val() + '</i> room.');
 
     setTimeout(function() {
     const pcs = room.getPeerConnections();
@@ -29,7 +29,7 @@ let count = 0;
     $('#send').click(function(){
         var msg = $('#msg').val();
         room.send(msg);
-        chatlog('自分> ' + msg);
+        chatlog('You> ' + msg);
     });
 
 // チャットを受信
@@ -57,7 +57,7 @@ let count = 0;
 // 退室
 $('#leave').click(function(){
     room.close();
-    chatlog('<i>' + $('#roomName').val() + '</i>から退室しました');
+    chatlog('Now leaving: <i>' + $('#roomName').val() + '</i> room.');
 })
 
 // チャットログに記録するための関数
