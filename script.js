@@ -10,17 +10,20 @@ debug: 3
 
 // 入室
 let room = null;
+let count = 0;
     $('#join').click(function()
     {room = peer.joinRoom($('#roomName').val(),{mode: 'mesh'});
     chatlog('<i>' + $('#roomName').val() + '</i>に入室しました');
 
     setTimeout(function() {
+    alert("test")
     const pcs = room.getPeerConnections();
-
+    
     for ([peerId, pc] of Object.entries(pcs)) {
       Id.push(peerId);
     }
-    chatlog("There are " + (Id.length + 1) + " user(s) here.");
+    //count = (Id.length + 1)
+    //chatlog("There are " + count + " user(s) here.");
     }, delayInMilliseconds);
 
 // チャットを送信
@@ -35,8 +38,8 @@ let room = null;
         chatlog('ID: ' + data.src + '> ' + data.data); //data.src = 送信者のpeerid, data.data = 送信されたメッセージ
     });
     
-    room.on("open", (peerId) => {
-        Id.push(peerId);
+    room.on("open", () => {
+        alert("test")
         chatlog("There are " + Id.length + " users here.");
         //Id.forEach(element => chatlog(element));
     });
