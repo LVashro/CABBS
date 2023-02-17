@@ -1,6 +1,6 @@
 let ngwords = [];
 let Id = [];
-let delayInMilliseconds = 1000;
+let delayInMilliseconds = 2000;
 
 // peerオブジェクト
 const peer = new Peer({
