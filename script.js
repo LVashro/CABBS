@@ -12,10 +12,13 @@ let room = null;
     $('#join').click(function()
     {room = peer.joinRoom($('#roomName').val(),{mode: 'mesh'});
     chatlog('<i>' + $('#roomName').val() + '</i>に入室しました');
+    
+    const pcs = room.getPeerConnections();
 
-// NGワードリストを読み込む?
-//    $.getJSON('data/ngwords.json',
-//    json => {ngwords = json.data;});
+    for ([peerId, pc] of Object.entries(pcs)) {
+      console.log(peerId, pc);
+    }
+    
 
 // チャットを送信
     $('#send').click(function(){
@@ -29,12 +32,13 @@ let room = null;
 
         chatlog('ID: ' + data.src + '> ' + data.data); //data.src = 送信者のpeerid, data.data = 送信されたメッセージ
     });
-
+    /*
     room.on("open", (peerId) => {
         Id.push(peerId);
         chatlog("There are " + Id.length + " users here.");
         //Id.forEach(element => chatlog(element));
     });
+    */
 });
 
 
