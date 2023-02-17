@@ -22,8 +22,8 @@ let room = null;
     }
     }, delayInMilliseconds);
 
-    chatlog("There are " + Id.length + " users here.");
-    
+    chatlog("There are " + (Id.length + 1) + " user(s) here.");
+
 // チャットを送信
     $('#send').click(function(){
         var msg = $('#msg').val();
