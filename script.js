@@ -18,7 +18,7 @@ let room = null;
     const pcs = room.getPeerConnections();
 
     for ([peerId, pc] of Object.entries(pcs)) {
-      console.log(peerId, pc);
+      alert(peerId);
     }
     }, delayInMilliseconds);
 
