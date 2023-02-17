@@ -20,9 +20,8 @@ let room = null;
     for ([peerId, pc] of Object.entries(pcs)) {
       Id.push(peerId);
     }
-    }, delayInMilliseconds);
-
     chatlog("There are " + (Id.length + 1) + " user(s) here.");
+    }, delayInMilliseconds);
 
 // チャットを送信
     $('#send').click(function(){
