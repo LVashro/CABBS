@@ -16,20 +16,19 @@ let count = 0;
     chatlog('<i>' + $('#roomName').val() + '</i>に入室しました');
 
     setTimeout(function() {
-    alert("test")
     const pcs = room.getPeerConnections();
     
     for ([peerId, pc] of Object.entries(pcs)) {
       Id.push(peerId);
     }
-    //count = (Id.length + 1)
-    //chatlog("There are " + count + " user(s) here.");
+    count = (Id.length + 1)
+    chatlog("There are " + count + " user(s) here.");
     }, delayInMilliseconds);
 
 // チャットを送信
     $('#send').click(function(){
         var msg = $('#msg').val();
-        room.send(name, msg);
+        room.send(msg);
         chatlog('自分> ' + msg);
     });
 
@@ -39,9 +38,15 @@ let count = 0;
     });
     
     room.on("open", () => {
-        alert("open")
-        chatlog("There are " + Id.length + " users here.");
-        //Id.forEach(element => chatlog(element));
+        if (count != 0){
+            count++;
+            chatlog("User joined: " + count + " users now.");
+        }
+    });
+
+    room.on("peerLeave", () => {
+        count--;
+        chatlog("User left: " + count + " users now.");
     });
 
     room.on("close", () => {
