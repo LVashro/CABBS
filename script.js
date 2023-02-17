@@ -1,5 +1,6 @@
 let ngwords = [];
 let Id = [];
+let delayInMilliseconds = 1000;
 
 // peerオブジェクト
 const peer = new Peer({
@@ -12,13 +13,14 @@ let room = null;
     $('#join').click(function()
     {room = peer.joinRoom($('#roomName').val(),{mode: 'mesh'});
     chatlog('<i>' + $('#roomName').val() + '</i>に入室しました');
-    
+
+    setTimeout(function() {
     const pcs = room.getPeerConnections();
 
     for ([peerId, pc] of Object.entries(pcs)) {
       console.log(peerId, pc);
     }
-    
+    }, delayInMilliseconds);
 
 // チャットを送信
     $('#send').click(function(){
