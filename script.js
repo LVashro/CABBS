@@ -39,7 +39,7 @@ let count = 0;
     });
     
     room.on("open", () => {
-        alert("test")
+        alert("open")
         chatlog("There are " + Id.length + " users here.");
         //Id.forEach(element => chatlog(element));
     });
