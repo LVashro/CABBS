@@ -26,22 +26,25 @@ let room = null;
 // チャットを送信
     $('#send').click(function(){
         var msg = $('#msg').val();
-        room.send(msg);
+        room.send(name, msg);
         chatlog('自分> ' + msg);
     });
 
 // チャットを受信
     room.on('data', function(data){
-
         chatlog('ID: ' + data.src + '> ' + data.data); //data.src = 送信者のpeerid, data.data = 送信されたメッセージ
     });
-    /*
+    
     room.on("open", (peerId) => {
         Id.push(peerId);
         chatlog("There are " + Id.length + " users here.");
         //Id.forEach(element => chatlog(element));
     });
-    */
+
+    room.on("close", () => {
+        Id.splice(0);
+    });
+    
 });
 
 
