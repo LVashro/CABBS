@@ -37,11 +37,9 @@ let count = 0;
         chatlog('ID: ' + data.src + '> ' + data.data); //data.src = 送信者のpeerid, data.data = 送信されたメッセージ
     });
     
-    room.on("open", () => {
-        if (count != 0){
-            count++;
-            chatlog("User joined: " + count + " users now.");
-        }
+    room.on("peerJoin", () => {
+        count++;
+        chatlog("User joined: " + count + " users now.");
     });
 
     room.on("peerLeave", () => {
