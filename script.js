@@ -1,6 +1,6 @@
 let ngwords = [];
 let Id = [];
-let delayInMilliseconds = 2000;
+let delayInMilliseconds = 1000;
 
 // peerオブジェクト
 const peer = new Peer({
@@ -39,12 +39,12 @@ let count = 0;
     
     room.on("peerJoin", () => {
         count++;
-        chatlog("User joined: " + count + " users now.");
+        chatlog("User joined: " + count + " user(s) now.");
     });
 
     room.on("peerLeave", () => {
         count--;
-        chatlog("User left: " + count + " users now.");
+        chatlog("User left: " + count + " user(s) now.");
     });
 
     room.on("close", () => {
