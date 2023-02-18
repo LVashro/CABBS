@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    display: flex;
+}
+
+main{
+    flex: 1 1 60%;
+    background-color: white;
+}
+
+.threadSection{
+    margin-top:80px;
+}
+
+.thread p{
+    padding: 20px;
+}
+
+.thread:hover{
+    background-color: #ccc;
+}
+
+.banner{
+    width: 100%;
+    padding: 30px 4% 10px;
+    position: fixed;
+    top: 0;
+    height: 30px;
+    background-color: white;
+    align-items: center;
+    border-bottom:1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+main p{
+    height: 200px;
+}
+
+.sidebar{
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    flex:1 1 20%;
+    min-width: 100px;
+    background-color: white;
+    border-left:1px solid #ccc;
+    padding: 20px;
+}
+
+.room{
+    margin-top:80px;
+}
+
+
+
+
+.navigation {
+    position: sticky;
+    top: 0;
+    flex: 1 1 20%;
+    min-width: 150px;
+    height: 100vh;
+    width: 200px;
+    background-color: white;
+    border-right:1px solid #ccc;
+    overflow-x: hidden;
+    transition: all 0.5s;
+}
+
+.navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+
+.navigation ul li {
+    list-style: none;
+    display: block;
+    width: 100%;
+    position:relative;
+    border-radius: 15px;
+}
+
+.navigation ul li:hover{
+    background-color: #ccc;
+}
+
+.navigation ul li a{
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.navigation ul li a .icon{
+    display: block;
+    min-width: 45px;
+    height: 60px;
+    line-height: 70px;
+    text-align: center;
+}
+
+.navigation ul li a .icon ion-icon{
+    font-size: 1.5rem;
+}
+
+.navigation ul li a .title{
+    padding-left: 10px;
+    height: 60px;
+    line-height: 60px;
+    white-space: nowrap;
+}
