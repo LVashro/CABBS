@@ -51,6 +51,15 @@ main p{
     padding: 20px;
 }
 
+.sidebar aside{
+    position: sticky;
+    top: 0;
+    flex:1 1 20%;
+    min-width: 100px;
+    background-color: white;
+    padding: 20px;
+}
+
 .room{
     margin-top:80px;
 }
