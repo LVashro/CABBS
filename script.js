@@ -36,8 +36,8 @@ function check(){
 function thread(){
     $(document).click(function(event) {
         var text = $(event.target).text();
-        join(text)
         location.href = 'thread.html';
+        join(text)
     });
 }
 
@@ -99,7 +99,7 @@ let count = 0;
 // 退室
 $('#leave').click(function(){
     room.close();
-    chatlog('Now leaving: <i>' + $('#roomName').val() + '</i> room.');
+    chatlog('Now leaving: <i>' + roomname + '</i> room.');
     setTimeout(function() {
         location.href = 'index.html';
     }, 2000);
