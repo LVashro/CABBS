@@ -21,6 +21,7 @@ main{
 
 .thread{
     border-bottom:1px solid var(--twitter-background);
+    padding: 20px;
 }
 
 .thread p{
