@@ -69,7 +69,6 @@ let count = 0;
 // チャットを受信
     room.on('data', function(data){
         msgRecieve = data.data;
-        2f86446ccadabb09239d117e2ad624d2ae5167ef
         for(i = 0; i < ng().ngwords.length; i++){ //Search for the bad word
             if(msgRecieve.indexOf(ng().ngwords[i]) != -1){
                 msgRecieve = msgRecieve.length; //Convert the bad word with "Hashtag" if the received message contains a bad word.
