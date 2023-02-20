@@ -33,7 +33,6 @@ function check(){
     }
 }
 
-
 function thread(){
     $(document).click(function(event) {
         var text = $(event.target).text();
@@ -71,10 +70,6 @@ let count = 0;
 // チャットを受信
     room.on('data', function(data){
         msgRecieve = data.data;
-<<<<<<< Updated upstream
-=======
-//      2f86446ccadabb09239d117e2ad624d2ae5167ef
->>>>>>> Stashed changes
         for(i = 0; i < ng().ngwords.length; i++){ //Search for the bad word
             if(msgRecieve.indexOf(ng().ngwords[i]) != -1){
                 msgRecieve = msgRecieve.length; //Convert the bad word with "Hashtag" if the received message contains a bad word.
