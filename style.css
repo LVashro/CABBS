@@ -36,8 +36,8 @@ main{
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.chatlog p{
-    height: 3px;
+.chatLog p{
+    height: 5px;
 }
 
 .sidebar{
