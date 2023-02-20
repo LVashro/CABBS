@@ -8,6 +8,19 @@ const peer = new Peer({
 debug: 3
 });
 
+//ボタンでページ遷移
+function check(){
+    var check = document.getElementById("roomName").value;
+    if (check === '') {
+      return true;
+    }
+    else {
+        return false;
+        location.href = 'thread.html';
+    }
+}
+
+
 // 入室
 let room = null;
 let count = 0;

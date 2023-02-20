@@ -13,7 +13,7 @@
     <div class="navigation">
       <ul>
         <li class="list active">
-          <a href="#">
+          <a href="index.html">
             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
             <span class="title">Home</span>
           </a>
@@ -30,8 +30,20 @@
             <span class="title">Others</span>
           </a>
         </li>
+
+        <!--Tweetbox start-->
+      <div class="tweetBox">
+        <form>
+          <div class="tweetBox__input">
+            <input type="text" id="roomName" placeholder="Your mum" />
+          </div>
+          <input type="submit" id="join" onclick="return check()" class="tweetBox__tweetButton" value="Tweet">
+        </form>
+      </div>
+      <!--Tweetbox end-->
       </ul>
     </div>
+    
     <main>
       <div class="banner">
         <p1>Home</p1>
@@ -65,6 +77,9 @@
       </aside>
     </div>
   </div>
+  <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
