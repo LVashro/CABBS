@@ -21,12 +21,32 @@ const peer = new Peer({
 debug: 3
 });
 
+//ボタンでページ遷移
+function check(){
+    var check = document.getElementById("roomName").value;
+    if (check === '') {
+      return true;
+    }
+    else {
+        location.href = 'thread.html';
+        return false;
+    }
+}
+
+function thread(){
+    $(document).click(function(event) {
+        var text = $(event.target).text();
+        join(text)
+    });
+}
+
+
 // 入室
 let room = null;
 let count = 0;
-    $('#join').click(function()
-    {room = peer.joinRoom($('#roomName').val(),{mode: 'mesh'});
-    chatlog('Now joining <i>' + $('#roomName').val() + '</i> room.');
+    function join(roomname)
+    {room = peer.joinRoom(roomname,{mode: 'mesh'});
+    chatlog('Now joining <i>' + roomname + '</i> room.');
 
     setTimeout(function() {
     const pcs = room.getPeerConnections();
@@ -47,7 +67,8 @@ let count = 0;
 
 // チャットを受信
     room.on('data', function(data){
-        msgRecieve = data.data
+        msgRecieve = data.data;
+        2f86446ccadabb09239d117e2ad624d2ae5167ef
         for(i = 0; i < ng().ngwords.length; i++){ //Search for the bad word
             if(msgRecieve.indexOf(ng().ngwords[i]) != -1){
                 msgRecieve = msgRecieve.length; //Convert the bad word with "Hashtag" if the received message contains a bad word.
@@ -72,13 +93,16 @@ let count = 0;
         Id.splice(0);
     });
     
-});
+};
 
 
 // 退室
 $('#leave').click(function(){
     room.close();
     chatlog('Now leaving: <i>' + $('#roomName').val() + '</i> room.');
+    setTimeout(function() {
+        location.href = 'index.html';
+    }, 2000);
 })
 
 // チャットログに記録するための関数
