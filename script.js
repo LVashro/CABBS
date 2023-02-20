@@ -37,7 +37,7 @@ function thread(){
     $(document).click(function(event) {
         var text = $(event.target).text();
         location.href = 'thread.html';
-        join(text)
+        setTimeout(function() {join(text)}, delayInMilliseconds);
     });
 }
 
@@ -98,6 +98,7 @@ let count = 0;
 
 // 退室
 $('#leave').click(function(){
+    roomname = room.name;
     room.close();
     chatlog('Now leaving: <i>' + roomname + '</i> room.');
     setTimeout(function() {
