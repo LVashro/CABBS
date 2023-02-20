@@ -35,7 +35,8 @@ function check(){
 
 function encode(item_id){
     $('.js-encode').click(function(){
-    location.href = 'thread.html?room='+item_id; // new url
+    var url = $(this).data('url');
+    location.href = url+'?saved_item_id='+item_id; // new url
     });
 }
 
