@@ -33,19 +33,15 @@ function check(){
     }
 }
 
-function encode(item_id){
-    $('.js-encode').click(function(){
-    var url = $(this).data('url');
-    location.href = url+'?saved_item_id='+item_id; // new url
-    });
-}
 
 function thread(){
     $(document).click(function(event) {
         var text = $(event.target).text();
-        encode(text);
+        var url = $(this).data('url');
+        location.href = url+ '?room='+text; // new url
     });
-}
+};
+
 
 
 // 入室
