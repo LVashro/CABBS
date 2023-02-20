@@ -18,7 +18,7 @@ const ng = request.onload = function(){ //When the JSON has been loaded.
 // peerオブジェクト
 const peer = new Peer({
     key: '1b703875-3805-4c38-93d2-3c9f2f5c9c57',// 自分のAPIキーを入力
-debug: 3
+    debug: 3
 });
 
 //ボタンでページ遷移
@@ -37,6 +37,7 @@ function thread(){
     $(document).click(function(event) {
         var text = $(event.target).text();
         join(text)
+        location.href = 'thread.html';
     });
 }
 
