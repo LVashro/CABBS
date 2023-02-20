@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="Jn">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CABBS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico"/>
+</head>
+
+<body>
+  <div class="container">
+    <div class="navigation">
+      <ul>
+        <li class="list active">
+          <a href="#">
+            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+            <span class="title">Home</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#">
+            <span class="icon"><ion-icon name="create-outline"></ion-icon></span>
+            <span class="title">Making thread</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#">
+            <span class="icon"><ion-icon name="ellipsis-horizontal-circle-outline"></ion-icon></span>
+            <span class="title">Others</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <main>
+      <div class="banner">
+        <p1>Home</p1>
+      </div>
+      <div class="room">
+        room: <input type="text" id="roomName">
+        <button id="join">Join</button>
+        <br><button id="leave">Exit</button>
+        <hr>
+        <input type="text" id="msg" placeholder="Enter message..."> <button id="send">send</button>
+        <hr>
+        <div id="chatLog">
+
+        </div>
+      </div>
+    </main>
+    <div class="sidebar">
+      <aside>
+        サイドバー
+      </aside>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

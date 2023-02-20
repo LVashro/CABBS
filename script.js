@@ -10,8 +10,8 @@ request.responseType = 'json';
 request.send();
 const ng = request.onload = function(){ //When the JSON has been loaded.
     const ngwords = request.response; //ngwords = JS object(array) that contains a list of bad words in it.
-    return{ //Output ngwords(array) outside of the function to utilize it as a list.
-        ngwords 
+    return{ 
+        ngwords //Output ngwords(array) outside of the function to utilize it as a list.
     };
 };
 
@@ -49,12 +49,12 @@ let count = 0;
     room.on('data', function(data){
         for(i = 0; i < ng().ngwords.length; i++){ //Search for the bad word
             if(data.data.indexOf(ng().ngwords[i]) != -1){
-                chatlog('Stop that trashtalk');
-                data.data = "Hashtag"; //Convert the bad word with "Hashtag" if the received message contains a bad word.
+                msgRecieve = data.data.length; //Convert the bad word with "Hashtag" if the received message contains a bad word.
+                msgRecieve = '#'.repeat(msgRecieve);
                 break;
             }
         }
-        chatlog('ID: ' + data.src + '> ' + data.data); //data.src = 送信者のpeerid, data.data = 送信されたメッセージ
+        chatlog('ID: ' + data.src + '> ' + msgRecieve); //data.src = 送信者のpeerid, data.data = 送信されたメッセージ
     });
     
     room.on("peerJoin", () => {
