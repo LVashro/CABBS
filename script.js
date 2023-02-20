@@ -33,11 +33,16 @@ function check(){
     }
 }
 
+function encode(item_id){
+    $('.js-encode').click(function(){
+    location.href = 'thread.html?room='+item_id; // new url
+    });
+}
+
 function thread(){
     $(document).click(function(event) {
         var text = $(event.target).text();
-        location.href = 'thread.html';
-        setTimeout(function() {join(text)}, delayInMilliseconds);
+        encode(text);
     });
 }
 
