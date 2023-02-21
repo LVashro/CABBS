@@ -60,9 +60,10 @@
   <script>
     setTimeout(function() {
       $(document).ready(function() {
-        var url = $(location).attr('href');
-        var roomname = url.queryKey['room'];
-        save(roomname);
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+          get: (searchParams, prop) => searchParams.get(prop),
+        });
+        join(params.room);
     });
     }, 1500);
   </script>

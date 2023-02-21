@@ -37,7 +37,7 @@ function thread(){
     $(document).click(function(event) {
         var text = $(event.target).text();
         var url = "thread.html";
-        location.href = url + '?room='+text; // new url
+        location.href = url + '?room=' + text; // new url
     });
 };
 
