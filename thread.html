@@ -60,7 +60,7 @@
   <script>
     setTimeout(function() {
       $(document).ready(function() {
-        var url = $(this).data('url');
+        var url = $(location).attr('href');
         var roomname = url.queryKey['room'];
         save(roomname);
     });
