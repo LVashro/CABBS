@@ -104,7 +104,7 @@ $('#leave').click(function(){
     chatlog('Now leaving: <i>' + roomname + '</i> room.');
     setTimeout(function() {
         location.href = 'index.html';
-    }, 2000);
+    }, 1500);
 })
 
 // チャットログに記録するための関数
