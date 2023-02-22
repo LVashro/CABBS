@@ -28,15 +28,10 @@ function check(){
       return true;
     }
     else {
-        make(check);
+        location.href = 'thread.html';
         return false;
     }
 }
-
-function make(text){
-    var url = "thread.html";
-    location.href = url + '?room=' + text; // new url
-};
 
 function thread(){
     $(document).click(function(event) {
