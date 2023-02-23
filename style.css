@@ -9,6 +9,12 @@
     display: flex;
 }
 
+#count{
+    position: relative;
+    bottom: 18px;
+    left: 200px;
+}
+
 main{
     flex: 1 1 60%;
     background-color: white;

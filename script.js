@@ -122,5 +122,5 @@ $('#leave').click(function(){
 function chatlog(msg){  $('#chatLog').append('<p>' + msg + '</p>');
 }
 
-function sidelog(msg){  $('#sidebar').append('<p>' + msg + '</p>');
+function sidelog(msg){  $('.sidebar').append('<p>' + msg + '</p>');
 }
