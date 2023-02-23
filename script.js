@@ -53,7 +53,7 @@ let count = 0;
     function join(roomname)
     {
     room = peer.joinRoom(roomname,{mode: 'mesh'});
-    chatlog('Now joining <i>' + roomname + '</i> room.');
+    sidelog('Now joining <i>' + roomname + '</i> room.');
 
     setTimeout(function() {
     const pcs = room.getPeerConnections();
@@ -62,7 +62,9 @@ let count = 0;
       Id.push(peerId);
     }
     count = (Id.length + 1)
-    chatlog("There are " + count + " user(s) here.");
+    sidelog("There are " + count + " user(s) here.");
+    const log = document.getElementById('count');
+    log.textContent = ("USER COUNT: " + count);
     }, delayInMilliseconds);
 
 // チャットを送信
@@ -85,14 +87,18 @@ let count = 0;
         chatlog('ID: ' + data.src + '> ' + msgRecieve); //data.src = 送信者のpeerid, data.data = 送信されたメッセージ
     });
     
-    room.on("peerJoin", () => {
+    room.on("peerJoin", (peerId) => {
         count++;
-        chatlog("User joined: " + count + " user(s) now.");
+        const log = document.getElementById('count');
+        sidelog("User: " + peerId + " joined.");
+        log.textContent = ("USER COUNT: " + count);
     });
 
-    room.on("peerLeave", () => {
+    room.on("peerLeave", (peerId) => {
         count--;
-        chatlog("User left: " + count + " user(s) now.");
+        const log = document.getElementById('count');
+        sidelog("User: " + peerId + " left.");
+        log.textContent = ("USER COUNT: " + count);
     });
 
     room.on("close", () => {
@@ -114,4 +120,7 @@ $('#leave').click(function(){
 
 // チャットログに記録するための関数
 function chatlog(msg){  $('#chatLog').append('<p>' + msg + '</p>');
+}
+
+function sidelog(msg){  $('#sidebar').append('<p>' + msg + '</p>');
 }
