@@ -18,7 +18,7 @@ const ng = request.onload = function(){ //When the JSON has been loaded.
 // peerオブジェクト
 const peer = new Peer({
     key: '1b703875-3805-4c38-93d2-3c9f2f5c9c57',// 自分のAPIキーを入力
-    debug: 3
+    debug: 3,
 });
 
 //ボタンでページ遷移
@@ -41,13 +41,28 @@ function thread(){
     });
 };
 
+function waitFor(conditionFunction) {
 
+  const poll = resolve => {
+    if(conditionFunction()) resolve();
+    else setTimeout(_ => poll(resolve), 400);
+  }
+
+  return new Promise(poll);
+}
+
+// Usage:
+//async function demo() {
+//  await waitFor(_ => flag === true);
+//  console.log('the wait is over!');
+//}
 
 // 入室
 let room = null;
 let count = 0;
     function join(roomname)
-    {room = peer.joinRoom(roomname,{mode: 'mesh'});
+    {
+    room = peer.joinRoom(roomname,{mode: 'mesh'});
     chatlog('Now joining <i>' + roomname + '</i> room.');
 
     setTimeout(function() {
