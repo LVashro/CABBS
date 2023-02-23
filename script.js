@@ -112,7 +112,7 @@ let count = 0;
 $('#leave').click(function(){
     roomname = room.name;
     room.close();
-    chatlog('Now leaving: <i>' + roomname + '</i> room.');
+    sidelog('Now leaving: <i>' + roomname + '</i> room.');
     setTimeout(function() {
         location.href = 'index.html';
     }, 1500);
