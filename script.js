@@ -1,126 +1,55 @@
-let ngwords = [];
-let Id = [];
-let delayInMilliseconds = 1000;
+import express from 'express';
+import bodyParser from 'body-parser';
+import Blockchain, { Block, Transaction } from './blockchain/index.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+// import Router from './router/index.js';
+// import { HTTP_PORT } from './config.js';
 
-//Load JSON file for the "word ban" feature. Takes about 2000ms async.
-let requestURL = 'https://raw.githubusercontent.com/dariusk/wordfilter/master/lib/badwords.json';
-let request = new XMLHttpRequest(); 
-request.open('GET', requestURL);
-request.responseType = 'json';
-request.send();
-const ng = request.onload = function(){ //When the JSON has been loaded.
-    const ngwords = request.response; //ngwords = JS object(array) that contains a list of bad words in it.
-    return{ 
-        ngwords //Output ngwords(array) outside of the function to utilize it as a list.
-    };
-};
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-// peerオブジェクト
-const peer = new Peer({
-    key: '1b703875-3805-4c38-93d2-3c9f2f5c9c57',// 自分のAPIキーを入力
-    debug: 3,
+const port = 3000;
+
+const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(`${__dirname}/public`));
+
+const bc = new Blockchain();
+//const router = new Router(bc);
+const tx = new Transaction();
+
+
+//console.log(block.prevHash);
+//console.log(block);
+
+
+app.get('/blocks', (req, res) => {
+  const r = bc.chain.map((b, i) => {
+    const j = b.toJSON();
+    j.hash = b.hash();
+    j.height = i;
+    return j;
+  });
+  res.json(r.reverse());
 });
 
-//ボタンでページ遷移
-function check(){
-    var check = document.getElementById("roomName").value;
-    if (check === '') {
-      return true;
-    }
-    else {
-        location.href = 'thread.html';
-        return false;
-    }
-}
 
-function thread(){
-    $(document).click(function(event) {
-        var text = $(event.target).text();
-        var url = "thread.html";
-        location.href = url + '?room=' + text; // new url
-    });
-};
+app.post('/transact', (req, res) => {
+  const { msg } = req.body;
+  tx.signTransaction(tx.privateKey, String(msg));
 
-// Usage:
-//async function demo() {
-//  await waitFor(_ => flag === true);
-//  console.log('the wait is over!');
-//}
-
-// 入室
-let room = null;
-let count = 0;
-    function join(roomname)
-    {
-    room = peer.joinRoom(roomname,{mode: 'mesh'});
-    sidelog('Now joining <i>' + roomname + '</i> room.');
-
-    setTimeout(function() {
-    const pcs = room.getPeerConnections();
-    
-    for ([peerId, pc] of Object.entries(pcs)) {
-      Id.push(peerId);
-    }
-    count = (Id.length + 1)
-    sidelog("There are " + count + " user(s) here.");
-    const log = document.getElementById('count');
-    log.textContent = ("USER COUNT: " + count);
-    }, delayInMilliseconds);
-
-// チャットを送信
-    $('#send').click(function(){
-        var msg = $('#msg').val();
-        room.send(msg);
-        chatlog('You> ' + msg);
-    });
-
-// チャットを受信
-    room.on('data', function(data){
-        msgRecieve = data.data;
-        for(i = 0; i < ng().ngwords.length; i++){ //Search for the bad word
-            if(msgRecieve.indexOf(ng().ngwords[i]) != -1){
-                msgRecieve = msgRecieve.length; //Convert the bad word with "Hashtag" if the received message contains a bad word.
-                msgRecieve = '#'.repeat(msgRecieve);
-                break;
-            }
-        }
-        chatlog('ID: ' + data.src + '> ' + msgRecieve); //data.src = 送信者のpeerid, data.data = 送信されたメッセージ
-    });
-    
-    room.on("peerJoin", (peerId) => {
-        count++;
-        const log = document.getElementById('count');
-        sidelog("User: " + peerId + " joined.");
-        log.textContent = ("USER COUNT: " + count);
-    });
-
-    room.on("peerLeave", (peerId) => {
-        count--;
-        const log = document.getElementById('count');
-        sidelog("User: " + peerId + " left.");
-        log.textContent = ("USER COUNT: " + count);
-    });
-
-    room.on("close", () => {
-        Id.splice(0);
-    });
-    
-};
+  let transactions = [tx.id, tx.outputs, tx.input];
+  console.log(transactions);
+  const prevHash = bc.lastHash();
+  let timestamp = new Date().getTime();
+  let block = new Block(timestamp, prevHash, transactions, msg);
+  bc.addBlock(block);
+  console.log(bc.chain);
 
 
-// 退室
-$('#leave').click(function(){
-    roomname = room.name;
-    room.close();
-    sidelog('Now leaving: <i>' + roomname + '</i> room.');
-    setTimeout(function() {
-        location.href = 'index.html';
-    }, 1500);
-})
+  res.json({ publicKey: tx.publicKey, msg});
+  //res.redirect('/transactions');
+});
 
-// チャットログに記録するための関数
-function chatlog(msg){  $('#chatLog').append('<p>' + msg + '</p>');
-}
-
-function sidelog(msg){  $('.sidebar').append('<p>' + msg + '</p>');
-}
+app.listen(port, () => console.log(`Listening on port ${port}`));
