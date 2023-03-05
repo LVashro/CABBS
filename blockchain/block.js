@@ -1,6 +1,5 @@
 import SHA256 from 'crypto-js/sha256.js';
 import Transaction from './transaction.js';
-import SubBlockchain from './subBlockchain.js';
 
 
 class Block {

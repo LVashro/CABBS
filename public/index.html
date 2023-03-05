@@ -1,85 +1,71 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Blockchain Test</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-  <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-  <style>
-    body {
-      padding-top: 5rem;
-    }
-    .row {
-      margin-top: 1em;
-    }
-  </style>
+<html lang="Ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-XSS-Protection" content="1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CABBS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico"/>
 </head>
+
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Blockchain Test</a>
-  </nav>
   <div class="container">
-    <div class="row">
-      <div class="col-sm">
-        <button class="btn btn-info btn-block">GET /blocks</button>
-      </div>
+    <div class="navigation">
+      <ul>
+        <li class="list active">
+          <a href="index.html">
+            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+            <span class="title">Home</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#">
+            <span class="icon"><ion-icon name="create-outline"></ion-icon></span>
+            <span class="title">Making thread</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#">
+            <span class="icon"><ion-icon name="ellipsis-horizontal-circle-outline"></ion-icon></span>
+            <span class="title">Others</span>
+          </a>
+        </li>
+
+        <!--Tweetbox start-->
+        <form class="tweetBox">
+          <p>Enter thread title</p>
+          <input class="tweetBox__input" type="text" placeholder="title" id="tweetBox__input" />
+          <button class="tweetBox__tweetButton" id="submitButton" type="submit" onclick="return module.check()">send</button>
+        </form>
+      <!--Tweetbox end-->
+      </ul>
     </div>
-    <div class="row">
-      <div class="col-sm">
-        <button class="btn btn-primary btn-block">POST /transact</button>
-        <div class="form-group row">
-          <label for="publicKey" class="col-sm-3 col-form-label">public key</label>
-          <div class="col-sm-9">
-            <input class="form-control" type="text" id="publicKey" placeholder="publicKey" />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="msg" class="col-sm-3 col-form-label">msg</label>
-          <div class="col-sm-9">
-            <input class="form-control" type="string" id="msg" placeholder="msg" />
-          </div>
-        </div>
+    
+    <main>
+      <div class="banner">
+      <p1>Home</p1>
       </div>
-    </div>
-    <div class="row">
-      <div>
-        <i class="fas fa-spinner fa-spin" style="display:none;"></i>
+      <div class="thread-section">
+
       </div>
-      <pre id="result"></pre>
+    </main>
+    <div class="sidebar">
+      <aside>
+        サイドバー
+      </aside>
     </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script>
-    $('button').on('click', function() {
-      const b = $(this).text().split(' ');
-      const type = b[0];
-      const url = b[1];
-      let data = null;
-      if (url === '/transact') {
-        publicKey = $('#publicKey').val();
-        msg = $('#msg').val();
-        if ( msg.length <= 0 ) {
-          alert('未入力です');
-          return;
-        }
-        data = { msg };
-      }
-      $('#result').text('');
-      $('.fa-spinner').show();
-      $.ajax({
-        url,
-        type,
-        data,
-        dataType: 'json',
-      }).done(function(json) {
-        try {
-          $('#result').text(JSON.stringify(json, null, 2));
-        } catch(e) {}
-      }).always(function() {
-        $('.fa-spinner').hide();
-      })
+    $(document).ready(function begin() {
+      module.getAllThreads();
     });
   </script>
 </body>
