@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: true, limit:'1kb'}));
 app.use(xss());
 
 mongoose
-  .connect("mongodb+srv://c2070:planet.kanazawa-it@cluster0.zmwqsds.mongodb.net/threads?retryWrites=true&w=majority")
+  .connect(""mongodb://127.0.0.1:27017/threads"")
   .then(() => console.log("DB Connected"))
   .catch((err) => console.log(err));
 
